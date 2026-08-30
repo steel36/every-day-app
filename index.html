@@ -126,13 +126,13 @@ body{
 .greeting{
   font-family:'Fraunces',serif;
   font-weight:500;
-  font-size:26px;
+  font-size:30px;
   line-height:1.15;
   color:var(--ink);
 }
 .date-line{
   font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
+  font-size:13px;
   letter-spacing:0.06em;
   text-transform:uppercase;
   color:var(--ink-soft);
@@ -147,7 +147,7 @@ body{
   border-radius:100px;
   padding:6px 12px 6px 10px;
   font-family:'IBM Plex Mono',monospace;
-  font-size:12px;
+  font-size:14px;
   font-weight:500;
   color:var(--moss);
   white-space:nowrap;
@@ -160,7 +160,7 @@ body{
 }
 .meta-pill{
   font-family:'IBM Plex Mono',monospace;
-  font-size:10.5px;
+  font-size:12px;
   letter-spacing:0.05em;
   text-transform:uppercase;
   padding:5px 10px;
@@ -170,7 +170,7 @@ body{
 }
 .version-note{
   font-family:'Inter',sans-serif;
-  font-size:11px;
+  font-size:13px;
   color:var(--ink-soft);
   margin: 8px 2px 0;
   line-height:1.4;
@@ -188,7 +188,7 @@ body{
 
 .testament-label{
   font-family:'IBM Plex Mono',monospace;
-  font-size:10px;
+  font-size:12px;
   letter-spacing:0.12em;
   text-transform:uppercase;
   color:var(--night);
@@ -206,14 +206,14 @@ body{
 .verse-text{
   font-family:'Fraunces',serif;
   font-weight:400;
-  font-size:19px;
+  font-size:22px;
   line-height:1.55;
   color:var(--ink);
   margin:0 0 6px;
 }
 .verse-ref{
   font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
+  font-size:13px;
   letter-spacing:0.04em;
   color:var(--ink-soft);
 }
@@ -231,7 +231,7 @@ body{
 .section-heading{
   font-family:'Fraunces',serif;
   font-weight:600;
-  font-size:22px;
+  font-size:25px;
   letter-spacing:-0.01em;
   color:var(--ink);
   margin-bottom:16px;
@@ -239,7 +239,7 @@ body{
 }
 .why-inner{
   font-family:'Inter',sans-serif;
-  font-size:13.5px;
+  font-size:15.5px;
   line-height:1.6;
   color:var(--ink-soft);
 }
@@ -253,7 +253,7 @@ body{
   border:none;
   font-family:'Inter',sans-serif;
   font-weight:600;
-  font-size:15px;
+  font-size:17px;
   cursor:pointer;
   background: var(--ink);
   color:var(--paper);
@@ -268,7 +268,7 @@ body{
 
 .reading-time-note{
   text-align:center;
-  font-size:11px;
+  font-size:13px;
   color:var(--ink-soft);
   margin-top:10px;
   font-family:'IBM Plex Mono',monospace;
@@ -277,7 +277,7 @@ body{
 /* ---------- week dots (progress) ---------- */
 .section-label{
   font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
+  font-size:13px;
   letter-spacing:0.08em;
   text-transform:uppercase;
   color:var(--ink-soft);
@@ -293,7 +293,7 @@ body{
   align-items:center;
   justify-content:center;
   font-family:'IBM Plex Mono',monospace;
-  font-size:10px;
+  font-size:12px;
   color:var(--ink-soft);
   position:relative;
 }
@@ -315,13 +315,13 @@ body{
 }
 .progress-title{
   font-family:'Fraunces',serif;
-  font-size:16px;
+  font-size:19px;
   margin:0 0 12px;
 }
 .bar-row{ margin-bottom:14px; }
 .bar-label{
   display:flex; justify-content:space-between;
-  font-size:12px; color:var(--ink-soft); margin-bottom:6px;
+  font-size:14px; color:var(--ink-soft); margin-bottom:6px;
   font-family:'IBM Plex Mono',monospace;
 }
 .bar-track{
@@ -337,13 +337,13 @@ body{
 }
 .streak-num{
   font-family:'Fraunces',serif;
-  font-size:52px;
+  font-size:58px;
   color:var(--ink);
   line-height:1;
 }
 .streak-label{
   font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
+  font-size:13px;
   letter-spacing:0.08em;
   text-transform:uppercase;
   color:var(--ink-soft);
@@ -363,13 +363,13 @@ body{
   display:flex; flex-direction:column; align-items:center; gap:4px;
   background:none; border:none; cursor:pointer;
   font-family:'Inter',sans-serif;
-  font-size:10.5px;
+  font-size:12px;
   font-weight:600;
   color:var(--ink-soft);
   padding:4px 0;
 }
 .tab.active{ color:var(--ink); }
-.tab svg{ width:20px; height:20px; }
+.tab svg{ width:22px; height:22px; }
 .tab.active svg{ stroke:var(--dawn); }
 
 /* scrollbar tidy */
@@ -486,11 +486,6 @@ function showScreen(id, btn){
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
-}
-
-function toggleWhy(){
-  document.getElementById('why-toggle').classList.toggle('open');
-  document.getElementById('why-panel').classList.toggle('open');
 }
 
 let done = false;
