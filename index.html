@@ -389,45 +389,40 @@ body{
   <div class="screen active" id="screen-today">
     <div class="top-row">
       <div>
-        <div class="greeting">Good morning.</div>
+        <div class="greeting" id="greeting">Good morning.</div>
         <div class="date-line" id="date-line">Sunday, August 30</div>
       </div>
-      <div class="streak-chip">🔥 <span id="streak-chip-num">6</span> days</div>
+      <div class="streak-chip">🔥 <span id="streak-chip-num">0</span> days</div>
     </div>
 
     <div class="horizon" id="horizon"></div>
 
     <div class="meta-row">
-      <div class="meta-pill">≈ 6 min read</div>
+      <div class="meta-pill" id="reading-time-pill">≈ 6 min read</div>
       <div class="meta-pill">WEB</div>
     </div>
 
     <div class="reading-card">
       <div class="section-heading">Read</div>
       <div class="testament-label"><span class="dot"></span>Old Testament</div>
-      <p class="verse-text">He came there to a cave, and lodged there; and behold, Yahweh's word came to him, and he said to him, "What are you doing here, Elijah?" He said, "I have been very jealous for Yahweh, the God of Armies; for the children of Israel have forsaken your covenant, thrown down your altars, and killed your prophets with the sword. I, even I only, am left; and they seek my life, to take it away."</p>
-      <p class="verse-text">He said, "Go out, and stand on the mountain before Yahweh." Behold, Yahweh passed by, and a great and strong wind tore the mountains, and broke in pieces the rocks before Yahweh; but Yahweh was not in the wind. After the wind there was an earthquake; but Yahweh was not in the earthquake. After the earthquake a fire passed; but Yahweh was not in the fire. After the fire there was a still small voice.</p>
-      <p class="verse-text">When Elijah heard it, he wrapped his face in his mantle, and went out, and stood in the entrance of the cave. Behold, a voice came to him, and said, "What are you doing here, Elijah?"</p>
-      <div class="verse-ref">1 KINGS 19:9–13</div>
+      <div id="ot-text"></div>
+      <div class="verse-ref" id="ot-ref"></div>
 
       <div class="divider"></div>
 
       <div class="testament-label nt"><span class="dot"></span>New Testament</div>
-      <p class="verse-text">"Most certainly, I tell you, one who doesn't enter by the door into the sheep fold, but climbs up some other way, is a thief and a robber. But one who enters in by the door is the shepherd of the sheep. The gatekeeper opens the gate for him, and the sheep listen to his voice. He calls his own sheep by name, and leads them out. Whenever he brings out his own sheep, he goes before them; and the sheep follow him, for they know his voice. They will by no means follow a stranger, but will flee from him; for they don't know the voice of strangers."</p>
-      <p class="verse-text">I am the good shepherd. I know my own, and I'm known by my own; my sheep hear my voice, and I know them, and they follow me. I give eternal life to them. They will never perish, and no one will snatch them out of my hand.</p>
-      <div class="verse-ref">JOHN 10:1–5, 14, 27–28</div>
+      <div id="nt-text"></div>
+      <div class="verse-ref" id="nt-ref"></div>
 
     </div>
 
     <div class="reading-card reflect-card">
       <div class="section-heading">Reflect</div>
-      <div class="why-inner">
-        Elijah expected to find God in the wind, the earthquake, the fire — and instead found him in a whisper. Jesus describes a similar kind of listening: sheep who know their shepherd's voice well enough to recognize it anywhere, apart from every other voice. Hearing God rarely starts with something dramatic. It starts with staying quiet and familiar enough with his voice to notice it.
-      </div>
+      <div class="why-inner" id="reflect-text"></div>
     </div>
 
-    <button class="complete-btn" id="complete-btn" onclick="markComplete()">Mark today's reading complete</button>
-    <div class="reading-time-note">You've read 6 days in a row</div>
+    <button class="complete-btn" id="complete-btn" onclick="toggleComplete()">Mark today's reading complete</button>
+    <div class="reading-time-note" id="reading-time-note">Start your streak today</div>
   </div>
 
   <!-- ============ PROGRESS ============ -->
@@ -440,30 +435,22 @@ body{
     </div>
 
     <div class="streak-hero">
-      <div class="streak-num">6</div>
+      <div class="streak-num" id="streak-num-big">0</div>
       <div class="streak-label">day streak</div>
     </div>
 
-    <div class="week-row">
-      <div class="week-day done">M</div>
-      <div class="week-day done">T</div>
-      <div class="week-day done">W</div>
-      <div class="week-day done">T</div>
-      <div class="week-day done">F</div>
-      <div class="week-day done">S</div>
-      <div class="week-day today">S</div>
-    </div>
+    <div class="week-row" id="week-row"></div>
 
     <div class="section-label">Reading through the Bible</div>
     <div class="progress-card">
       <p class="progress-title">Since you started</p>
       <div class="bar-row">
-        <div class="bar-label"><span>Old Testament</span><span>9%</span></div>
-        <div class="bar-track"><div class="bar-fill ot" style="width:9%"></div></div>
+        <div class="bar-label"><span>Old Testament</span><span id="ot-pct">0%</span></div>
+        <div class="bar-track"><div class="bar-fill ot" id="ot-bar" style="width:0%"></div></div>
       </div>
       <div class="bar-row">
-        <div class="bar-label"><span>New Testament</span><span>14%</span></div>
-        <div class="bar-track"><div class="bar-fill nt" style="width:14%"></div></div>
+        <div class="bar-label"><span>New Testament</span><span id="nt-pct">0%</span></div>
+        <div class="bar-track"><div class="bar-fill nt" id="nt-bar" style="width:0%"></div></div>
       </div>
     </div>
   </div>
@@ -481,28 +468,214 @@ body{
 </div>
 
 <script>
+/* ---------- content calendar ----------
+   Each entry is one day's reading. Content rotates through this list based
+   on the real calendar date, so it changes on its own every day rather than
+   needing to be swapped by hand. Add more entries any time to extend the plan. */
+const READINGS = [
+  {
+    theme: 'Hearing God',
+    readingTime: '≈ 6 min read',
+    ot: {
+      ref: '1 KINGS 19:9–13',
+      paragraphs: [
+        `He came there to a cave, and lodged there; and behold, Yahweh's word came to him, and he said to him, "What are you doing here, Elijah?" He said, "I have been very jealous for Yahweh, the God of Armies; for the children of Israel have forsaken your covenant, thrown down your altars, and killed your prophets with the sword. I, even I only, am left; and they seek my life, to take it away."`,
+        `He said, "Go out, and stand on the mountain before Yahweh." Behold, Yahweh passed by, and a great and strong wind tore the mountains, and broke in pieces the rocks before Yahweh; but Yahweh was not in the wind. After the wind there was an earthquake; but Yahweh was not in the earthquake. After the earthquake a fire passed; but Yahweh was not in the fire. After the fire there was a still small voice.`,
+        `When Elijah heard it, he wrapped his face in his mantle, and went out, and stood in the entrance of the cave. Behold, a voice came to him, and said, "What are you doing here, Elijah?"`
+      ]
+    },
+    nt: {
+      ref: 'JOHN 10:1–5, 14, 27–28',
+      paragraphs: [
+        `"Most certainly, I tell you, one who doesn't enter by the door into the sheep fold, but climbs up some other way, is a thief and a robber. But one who enters in by the door is the shepherd of the sheep. The gatekeeper opens the gate for him, and the sheep listen to his voice. He calls his own sheep by name, and leads them out. Whenever he brings out his own sheep, he goes before them; and the sheep follow him, for they know his voice. They will by no means follow a stranger, but will flee from him; for they don't know the voice of strangers."`,
+        `I am the good shepherd. I know my own, and I'm known by my own; my sheep hear my voice, and I know them, and they follow me. I give eternal life to them. They will never perish, and no one will snatch them out of my hand.`
+      ]
+    },
+    reflect: `Elijah expected to find God in the wind, the earthquake, the fire — and instead found him in a whisper. Jesus describes a similar kind of listening: sheep who know their shepherd's voice well enough to recognize it anywhere, apart from every other voice. Hearing God rarely starts with something dramatic. It starts with staying quiet and familiar enough with his voice to notice it.`
+  },
+  {
+    theme: 'Walking with God',
+    readingTime: '≈ 6 min read',
+    ot: {
+      ref: 'PSALM 25:1–2, 4–5, 8–10',
+      paragraphs: [
+        `To you, Yahweh, I lift up my soul. My God, I have trusted in you. Don't let me be shamed. Don't let my enemies triumph over me.`,
+        `Show me your ways, Yahweh. Teach me your paths. Guide me in your truth, and teach me, for you are the God of my salvation, I wait for you all day long.`,
+        `Good and upright is Yahweh, therefore he will instruct sinners in the way. He will guide the humble in justice. He will teach the humble his way. All the paths of Yahweh are loving kindness and truth to such as keep his covenant and his testimonies.`
+      ]
+    },
+    nt: {
+      ref: 'GALATIANS 5:16–18, 22–25',
+      paragraphs: [
+        `I say, walk by the Spirit, and you won't fulfill the lust of the flesh. For the flesh lusts against the Spirit, and the Spirit against the flesh; and these are contrary to one another, that you may not do the things that you desire. But if you are led by the Spirit, you are not under the law.`,
+        `The fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, and self-control. Against such things there is no law. Those who belong to Christ have crucified the flesh with its passions and lusts. If we live by the Spirit, let's also walk by the Spirit.`
+      ]
+    },
+    reflect: `Psalm 25 is a daily prayer for direction — teach me, lead me, show me the way. Galatians 5 shows what that walk actually looks like: not one giant decision, but a daily choice to walk by the Spirit rather than the flesh, one that quietly produces its own fruit over time. Walking with God isn't a leap. It's today's steps, repeated.`
+  }
+];
+
+/* ---------- persistence ---------- */
+const STORAGE_KEY = 'everyDayApp_v1';
+
+function loadData(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return { completedDates: [] };
+    const parsed = JSON.parse(raw);
+    if(!Array.isArray(parsed.completedDates)) return { completedDates: [] };
+    return parsed;
+  }catch(e){
+    return { completedDates: [] };
+  }
+}
+function saveData(data){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+  catch(e){ /* storage unavailable, fail silently */ }
+}
+
+/* ---------- date helpers ---------- */
+function toISODate(d){
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+function daysSinceEpoch(d){
+  return Math.floor(d.getTime() / 86400000);
+}
+
+let appData = loadData();
+const today = new Date();
+const todayISO = toISODate(today);
+
+/* ---------- pick today's reading ---------- */
+const readingIndex = ((daysSinceEpoch(today) % READINGS.length) + READINGS.length) % READINGS.length;
+const reading = READINGS[readingIndex];
+
+function renderReading(){
+  document.getElementById('reading-time-pill').textContent = reading.readingTime;
+  document.getElementById('ot-text').innerHTML = reading.ot.paragraphs.map(p => `<p class="verse-text">${p}</p>`).join('');
+  document.getElementById('ot-ref').textContent = reading.ot.ref;
+  document.getElementById('nt-text').innerHTML = reading.nt.paragraphs.map(p => `<p class="verse-text">${p}</p>`).join('');
+  document.getElementById('nt-ref').textContent = reading.nt.ref;
+  document.getElementById('reflect-text').textContent = reading.reflect;
+}
+
+/* ---------- streak calculation ---------- */
+function computeStreak(completedDates){
+  const set = new Set(completedDates);
+  let streak = 0;
+  let cursor = new Date(today);
+  // If today isn't marked complete yet, start counting from yesterday
+  // so an unfinished today doesn't zero out an existing streak.
+  if(!set.has(todayISO)){
+    cursor.setDate(cursor.getDate() - 1);
+  }
+  while(set.has(toISODate(cursor))){
+    streak++;
+    cursor.setDate(cursor.getDate() - 1);
+  }
+  return streak;
+}
+
+/* ---------- render streak + button state ---------- */
+function renderStatus(){
+  const isDoneToday = appData.completedDates.includes(todayISO);
+  const streak = computeStreak(appData.completedDates);
+
+  document.getElementById('streak-chip-num').textContent = streak;
+  document.getElementById('streak-num-big').textContent = streak;
+
+  const btn = document.getElementById('complete-btn');
+  const horizon = document.getElementById('horizon');
+  const note = document.getElementById('reading-time-note');
+
+  if(isDoneToday){
+    btn.classList.add('done');
+    btn.innerHTML = '<span class="check">✓</span> Today\'s reading complete';
+    horizon.classList.add('lit');
+  }else{
+    btn.classList.remove('done');
+    btn.textContent = "Mark today's reading complete";
+    horizon.classList.remove('lit');
+  }
+
+  note.textContent = streak > 0
+    ? `You've read ${streak} day${streak === 1 ? '' : 's'} in a row`
+    : 'Start your streak today';
+}
+
+function toggleComplete(){
+  const idx = appData.completedDates.indexOf(todayISO);
+  if(idx === -1){
+    appData.completedDates.push(todayISO);
+  }else{
+    appData.completedDates.splice(idx, 1);
+  }
+  saveData(appData);
+  renderStatus();
+}
+
+/* ---------- week row (Progress screen) ---------- */
+function renderWeekRow(){
+  const container = document.getElementById('week-row');
+  container.innerHTML = '';
+  const labels = ['S','M','T','W','T','F','S'];
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - today.getDay()); // back up to Sunday
+
+  for(let i = 0; i < 7; i++){
+    const d = new Date(startOfWeek);
+    d.setDate(startOfWeek.getDate() + i);
+    const iso = toISODate(d);
+    const isDone = appData.completedDates.includes(iso);
+    const isToday = iso === todayISO;
+
+    const cell = document.createElement('div');
+    cell.className = 'week-day' + (isDone ? ' done' : '') + (isToday ? ' today' : '');
+    cell.textContent = labels[i];
+    container.appendChild(cell);
+  }
+}
+
+/* ---------- progress bars ----------
+   Placeholder metric until a full reading plan is authored: percentage of a
+   365-day plan completed so far. Both bars share this number for now since
+   each day's reading always covers both testaments together. */
+function renderProgressBars(){
+  const totalDays = appData.completedDates.length;
+  const pct = Math.min(100, Math.round((totalDays / 365) * 100));
+  document.getElementById('ot-pct').textContent = pct + '%';
+  document.getElementById('nt-pct').textContent = pct + '%';
+  document.getElementById('ot-bar').style.width = pct + '%';
+  document.getElementById('nt-bar').style.width = pct + '%';
+}
+
+/* ---------- greeting + date ---------- */
+function renderGreeting(){
+  const hour = today.getHours();
+  const greeting = hour < 12 ? 'Good morning.' : hour < 18 ? 'Good afternoon.' : 'Good evening.';
+  document.getElementById('greeting').textContent = greeting;
+  const opts = { weekday:'long', month:'long', day:'numeric' };
+  document.getElementById('date-line').textContent = today.toLocaleDateString('en-US', opts);
+}
+
 function showScreen(id, btn){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
+  if(id === 'screen-progress'){
+    renderWeekRow();
+    renderProgressBars();
+  }
 }
 
-let done = false;
-function markComplete(){
-  const btn = document.getElementById('complete-btn');
-  const horizon = document.getElementById('horizon');
-  const streakChip = document.getElementById('streak-chip-num');
-  if(done) return;
-  done = true;
-  btn.classList.add('done');
-  btn.innerHTML = '<span class="check">✓</span> Today\'s reading complete';
-  horizon.classList.add('lit');
-  streakChip.textContent = 7;
-}
-
-const opts = { weekday:'long', month:'long', day:'numeric' };
-document.getElementById('date-line').textContent = new Date().toLocaleDateString('en-US', opts);
+/* ---------- init ---------- */
+renderGreeting();
+renderReading();
+renderStatus();
 </script>
 
 </body>
