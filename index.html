@@ -689,19 +689,39 @@ function saveData(data){
   catch(e){ /* storage unavailable, fail silently */ }
 }
 
-/* ---------- date helpers ---------- */
-function toISODate(d){
-  const y = d.getFullYear();
-  const m = String(d.getMonth()+1).padStart(2,'0');
-  const day = String(d.getDate()).padStart(2,'0');
-  return `${y}-${m}-${day}`;
+/* ---------- date helpers ----------
+   The reading day, streak, and week view are all anchored to the calendar
+   date in US Eastern time (America/New_York) — not the device's local
+   timezone and not UTC. This means today's reading changes for everyone
+   at 12:00am Eastern, regardless of what timezone a phone is set to. */
+function getEasternParts(d){
+  const fmt = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    year: 'numeric', month: '2-digit', day: '2-digit'
+  });
+  const parts = fmt.formatToParts(d).reduce((acc, p) => { acc[p.type] = p.value; return acc; }, {});
+  return { year: parseInt(parts.year, 10), month: parseInt(parts.month, 10), day: parseInt(parts.day, 10) };
 }
-function daysSinceEpoch(d){
-  return Math.floor(d.getTime() / 86400000);
+function easternISODate(d){
+  const { year, month, day } = getEasternParts(d);
+  return `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+}
+// A UTC-normalized Date representing the current Eastern calendar day at
+// midnight. Safe to do plain day-arithmetic on (setUTCDate etc.) without
+// DST or local-timezone surprises, since it's just Y/M/D math from here on.
+function easternCalendarDate(d){
+  const { year, month, day } = getEasternParts(d);
+  return new Date(Date.UTC(year, month - 1, day));
+}
+function daysSinceEpoch(calendarDate){
+  return Math.floor(calendarDate.getTime() / 86400000);
+}
+function toISODate(calendarDate){
+  return calendarDate.toISOString().slice(0, 10);
 }
 
 let appData = loadData();
-const today = new Date();
+const today = easternCalendarDate(new Date());
 const todayISO = toISODate(today);
 
 /* ---------- pick today's reading ---------- */
@@ -725,11 +745,11 @@ function computeStreak(completedDates){
   // If today isn't marked complete yet, start counting from yesterday
   // so an unfinished today doesn't zero out an existing streak.
   if(!set.has(todayISO)){
-    cursor.setDate(cursor.getDate() - 1);
+    cursor.setUTCDate(cursor.getUTCDate() - 1);
   }
   while(set.has(toISODate(cursor))){
     streak++;
-    cursor.setDate(cursor.getDate() - 1);
+    cursor.setUTCDate(cursor.getUTCDate() - 1);
   }
   return streak;
 }
@@ -778,11 +798,11 @@ function renderWeekRow(){
   container.innerHTML = '';
   const labels = ['S','M','T','W','T','F','S'];
   const startOfWeek = new Date(today);
-  startOfWeek.setDate(today.getDate() - today.getDay()); // back up to Sunday
+  startOfWeek.setUTCDate(today.getUTCDate() - today.getUTCDay()); // back up to Sunday
 
   for(let i = 0; i < 7; i++){
     const d = new Date(startOfWeek);
-    d.setDate(startOfWeek.getDate() + i);
+    d.setUTCDate(startOfWeek.getUTCDate() + i);
     const iso = toISODate(d);
     const isDone = appData.completedDates.includes(iso);
     const isToday = iso === todayISO;
@@ -809,11 +829,17 @@ function renderProgressBars(){
 
 /* ---------- greeting + date ---------- */
 function renderGreeting(){
-  const hour = today.getHours();
+  const now = new Date();
+  const hour = now.getHours(); // greeting matches the visitor's own local time of day
   const greeting = hour < 12 ? 'Good morning.' : hour < 18 ? 'Good afternoon.' : 'Good evening.';
   document.getElementById('greeting').textContent = greeting;
-  const opts = { weekday:'long', month:'long', day:'numeric' };
-  document.getElementById('date-line').textContent = today.toLocaleDateString('en-US', opts);
+
+  // Date line always shows the Eastern-time calendar date (matches the
+  // reading day), formatted directly to avoid UTC/local shift bugs.
+  const dateFmt = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York', weekday: 'long', month: 'long', day: 'numeric'
+  });
+  document.getElementById('date-line').textContent = dateFmt.format(now);
 }
 
 function showScreen(id, btn){
