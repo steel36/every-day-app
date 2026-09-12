@@ -670,6 +670,242 @@ const READINGS = [
   }
 ];
 
+/* ---------- scheduled content (10 new days, 8–10 min reads) ----------
+   These override the rotation on specific Eastern-time dates. Anything
+   outside this range falls back to the rotating READINGS list above. */
+const SCHEDULE = {
+  '2026-09-12': {
+    theme: 'Love',
+    readingTime: '≈ 8 min read',
+    ot: {
+      ref: 'DEUTERONOMY 6:4–9; 7:7–9; 10:12–13, 20–21',
+      paragraphs: [
+        `Yahweh didn't set his love on you, nor choose you, because you were more in number than any people; for you were the fewest of all peoples. But because Yahweh loves you, and because he desires to keep the oath which he swore to your fathers, Yahweh has brought you out with a mighty hand, and redeemed you out of the house of bondage. Know therefore that Yahweh your God, he is God, the faithful God, who keeps covenant and loving kindness with them who love him and keep his commandments to a thousand generations.`,
+        `Hear, Israel: Yahweh is our God. Yahweh is one. You shall love Yahweh your God with all your heart, with all your soul, and with all your strength. These words, which I command you today, shall be on your heart. You shall teach them diligently to your children, and shall talk of them when you sit in your house, when you walk by the way, when you lie down, and when you rise up. You shall bind them for a sign on your hand, and they shall be as frontlets between your eyes. You shall write them on the door posts of your house, and on your gates.`,
+        `Now, Israel, what does Yahweh your God require of you, but to fear Yahweh your God, to walk in all his ways, to love him, and to serve Yahweh your God with all your heart and with all your soul, to keep the commandments of Yahweh, and his statutes, which I command you today for your good? You shall fear Yahweh your God; you shall serve him; and you shall cling to him. He is your praise, and he is your God, who has done for you these great and awesome things which your eyes have seen.`
+      ]
+    },
+    nt: {
+      ref: '1 CORINTHIANS 13; 1 JOHN 4:7–12, 18–19',
+      paragraphs: [
+        `If I speak with the languages of men and of angels, but don't have love, I have become sounding brass, or a clanging cymbal. If I have the gift of prophecy, and know all mysteries and all knowledge; and if I have all faith, so as to remove mountains, but don't have love, I am nothing. If I dole out all my goods to feed the poor, and if I give my body to be burned, but don't have love, it profits me nothing.`,
+        `Love is patient and is kind. Love doesn't envy. Love doesn't brag, is not proud, doesn't behave itself inappropriately, doesn't seek its own way, is not provoked, takes no account of evil; doesn't rejoice in unrighteousness, but rejoices with the truth; bears all things, believes all things, hopes all things, endures all things. Love never fails.`,
+        `For now we see in a mirror, dimly, but then face to face. Now I know in part, but then I will know fully, even as I was also fully known. But now faith, hope, and love remain — these three. The greatest of these is love.`,
+        `Beloved, let us love one another, for love is of God; and everyone who loves is born of God, and knows God. He who doesn't love doesn't know God, for God is love. By this God's love was revealed in us, that God has sent his one and only Son into the world that we might live through him. In this is love, not that we loved God, but that he loved us, and sent his Son as the atoning sacrifice for our sins.`,
+        `There is no fear in love; but perfect love casts out fear, because fear has punishment. He who fears is not made perfect in love. We love him, because he first loved us.`
+      ]
+    },
+    reflect: `Deuteronomy starts with love as command — love God with everything, and let it shape ordinary moments: sitting, walking, lying down, rising. John flips the direction: we love because God loved first. Paul describes what that love actually looks like in practice — patient, kind, not self-seeking. Together they trace the whole shape of it: received from God, then given away, then lived out in the small details of an ordinary day.`
+  },
+  '2026-09-13': {
+    theme: 'Peace',
+    readingTime: '≈ 8 min read',
+    ot: {
+      ref: 'PSALM 46; ISAIAH 26:3–4, 12',
+      paragraphs: [
+        `God is our refuge and strength, a very present help in trouble. Therefore we won't be afraid, though the earth changes, though the mountains are shaken into the heart of the seas; though its waters roar and are troubled, though the mountains tremble with its swelling.`,
+        `There is a river, the streams of which make the city of God glad, the holy place of the tents of the Most High. God is in the midst of her. She shall not be moved. God will help her at dawn. The nations raged. The kingdoms were moved. He lifted his voice, and the earth melted.`,
+        `Yahweh of Armies is with us. The God of Jacob is our refuge. Come, see Yahweh's works, what desolations he has made in the earth. He makes wars cease to the end of the earth. He breaks the bow, and shatters the spear. He burns the chariots in the fire.`,
+        `"Be still, and know that I am God. I will be exalted among the nations. I will be exalted in the earth." Yahweh of Armies is with us. The God of Jacob is our refuge.`,
+        `You will keep whoever's mind is steadfast in perfect peace, because he trusts in you. Trust in Yahweh forever, for in Yah, Yahweh, is an everlasting rock. Yahweh, you will ordain peace for us, for you have also worked all our works for us.`
+      ]
+    },
+    nt: {
+      ref: 'JOHN 14:25–27; 16:33; PHILIPPIANS 4:4–9',
+      paragraphs: [
+        `"I have said these things to you, while still living with you. But the Counselor, the Holy Spirit, whom the Father will send in my name, he will teach you all things, and will remind you of all that I said to you. Peace I leave with you. My peace I give to you; not as the world gives, give I to you. Don't let your heart be troubled, neither let it be fearful."`,
+        `"I have told you these things, that in me you may have peace. In the world you have oppression; but cheer up! I have overcome the world."`,
+        `Rejoice in the Lord always! Again I will say, Rejoice! Let your gentleness be known to all men. The Lord is at hand. In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God.`,
+        `And the peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus. Finally, brothers, whatever things are true, whatever things are honorable, whatever things are just, whatever things are pure, whatever things are lovely, whatever things are of good report — think about these things. The things which you learned and received and heard and saw in me: do these things, and the God of peace will be with you.`
+      ]
+    },
+    reflect: `Psalm 46 finds peace in the middle of shaking ground — not because nothing is wrong, but because God is a steady refuge underneath it. Jesus offers a peace that specifically isn't the world's kind, given right before he tells his disciples they'll face trouble. Peace, in scripture, was never about calm circumstances. It's a steady center that holds regardless of what's moving around it.`
+  },
+  '2026-09-14': {
+    theme: 'Courage',
+    readingTime: '≈ 8 min read',
+    ot: {
+      ref: 'JOSHUA 1:1–9; ISAIAH 41:10, 13',
+      paragraphs: [
+        `After the death of Moses the servant of Yahweh, Yahweh spoke to Joshua the son of Nun, Moses' servant, saying, "Moses my servant is dead. Now therefore arise, cross over this Jordan, you, and all this people, to the land which I give to them, even to the children of Israel."`,
+        `"No man will be able to stand before you all the days of your life. As I was with Moses, so I will be with you. I will not fail you nor forsake you. Be strong and courageous, for you shall cause this people to inherit the land which I swore to their fathers to give them."`,
+        `"Only be strong and very courageous. Observe to do according to all the law which Moses my servant commanded you. Don't turn from it to the right hand or to the left, that you may prosper wherever you go. This book of the law shall not depart from your mouth, but you shall meditate on it day and night."`,
+        `"Have not I commanded you? Be strong and of good courage. Don't be scared, neither be dismayed, for Yahweh your God is with you wherever you go."`,
+        `"Don't be afraid, for I am with you. Don't be dismayed, for I am your God. I will strengthen you. Yes, I will help you. Yes, I will uphold you with the right hand of my righteousness. For I, Yahweh your God, will hold your right hand, saying to you, 'Don't be afraid. I will help you.'"`
+      ]
+    },
+    nt: {
+      ref: 'MATTHEW 14:22–33; 2 TIMOTHY 1:7',
+      paragraphs: [
+        `Immediately Jesus made the disciples get into the boat, and to go ahead of him to the other side, while he sent the multitudes away. After he had sent the multitudes away, he went up into the mountain by himself to pray. When evening had come, he was there alone.`,
+        `But the boat was now in the middle of the sea, distressed by the waves, for the wind was contrary. In the fourth watch of the night, Jesus came to them, walking on the sea. When the disciples saw him walking on the sea, they were troubled, saying, "It's a ghost!" and they cried out for fear.`,
+        `Immediately Jesus spoke to them, saying, "Cheer up! It is I! Don't be afraid." Peter answered him and said, "Lord, if it is you, command me to come to you on the waters." He said, "Come!" Peter stepped down from the boat and walked on the waters to come to Jesus.`,
+        `But when he saw that the wind was strong, he was afraid, and beginning to sink, he cried out, saying, "Lord, save me!" Immediately Jesus stretched out his hand, took hold of him, and said to him, "You of little faith, why did you doubt?" When they got up into the boat, the wind ceased.`,
+        `For God didn't give us a spirit of fear, but of power, love, and self-control.`
+      ]
+    },
+    reflect: `Joshua's courage isn't self-generated — it's repeated three times as a command precisely because God promises to be present through it. Peter's courage gets him out of the boat, but it's the wind, not the water, that shakes it. Courage in scripture rarely means feeling fearless. It means moving anyway, with a hand ready to catch you the moment you start to sink.`
+  },
+  '2026-09-15': {
+    theme: 'Wisdom',
+    readingTime: '≈ 8 min read',
+    ot: {
+      ref: '1 KINGS 3:5–14; PROVERBS 2:1–6',
+      paragraphs: [
+        `In Gibeon, Yahweh appeared to Solomon in a dream by night, and God said, "Ask what I should give you." Solomon said, "You have shown to your servant David my father great loving kindness, because he walked before you in truth, in righteousness, and in uprightness of heart with you."`,
+        `"Now, Yahweh my God, you have made your servant king instead of David my father. I am just a little child. I don't know how to go out or come in. Give your servant therefore an understanding heart to judge your people, that I may discern between good and evil; for who is able to judge this your great people?"`,
+        `The speech pleased the Lord, that Solomon had asked this thing. God said to him, "Because you have asked this thing, and have not asked for yourself long life, nor riches, nor the life of your enemies, but have asked for yourself understanding to discern justice; behold, I have given you a wise and understanding heart, so that there has been none like you before you, neither after you shall any arise like you."`,
+        `My son, if you will receive my words, and store up my commandments within you; if you cry out for discernment, and lift up your voice for understanding; if you seek her as silver, and search for her as for hidden treasures; then you will understand the fear of Yahweh, and find the knowledge of God. For Yahweh gives wisdom. Out of his mouth comes knowledge and understanding.`
+      ]
+    },
+    nt: {
+      ref: 'JAMES 1:5; 3:13–18; COLOSSIANS 2:2–3',
+      paragraphs: [
+        `If any of you lacks wisdom, let him ask of God, who gives to all liberally and without reproach, and it will be given to him.`,
+        `Who is wise and understanding among you? Let him show by his good conduct that his deeds are done in gentleness of wisdom. But if you have bitter jealousy and selfish ambition in your heart, don't boast and don't lie against the truth. This wisdom is not that which comes down from above, but is earthly, sensual, and demonic.`,
+        `But the wisdom that is from above is first pure, then peaceful, gentle, reasonable, full of mercy and good fruits, without partiality, and without hypocrisy. Now the fruit of righteousness is sown in peace by those who make peace.`,
+        `That their hearts may be comforted, they being knit together in love, and gaining all riches of the full assurance of understanding, that they may know the mystery of God, both of the Father and of Christ, in whom are all the treasures of wisdom and knowledge hidden.`
+      ]
+    },
+    reflect: `Solomon could have asked for anything and asked for an understanding heart instead. James makes wisdom sound almost embarrassingly available — just ask. But both agree wisdom isn't mainly about being clever. It's gentle, peaceable, and shows up in how you actually treat people, not just in what you know.`
+  },
+  '2026-09-16': {
+    theme: 'Faith',
+    readingTime: '≈ 8 min read',
+    ot: {
+      ref: 'GENESIS 15:1–6; HABAKKUK 2:4; ISAIAH 7:9',
+      paragraphs: [
+        `After these things, Yahweh's word came to Abram in a vision, saying, "Don't be afraid, Abram. I am your shield, your exceedingly great reward." Abram said, "Lord Yahweh, what will you give me, since I go childless?"`,
+        `He brought him outside, and said, "Look now toward the sky, and count the stars, if you are able to count them." He said to Abram, "So shall your offspring be." He believed in Yahweh, who credited it to him for righteousness.`,
+        `Behold, his soul is puffed up. It is not upright in him, but the righteous will live by his faith. If you will not believe, surely you shall not be established.`
+      ]
+    },
+    nt: {
+      ref: 'HEBREWS 11:1–3, 6, 8, 13, 24–27; MARK 9:23–24',
+      paragraphs: [
+        `Now faith is assurance of things hoped for, proof of things not seen. For by this, the elders obtained testimony. By faith, we understand that the universe has been framed by the word of God, so that what is seen has not been made out of things which are visible. Without faith it is impossible to be well pleasing to him, for he who comes to God must believe that he exists, and that he is a rewarder of those who seek him.`,
+        `By faith, Abraham, when he was called, obeyed to go out to the place which he was to receive for an inheritance. He went out, not knowing where he was going. These all died in faith, not having received the promises, but having seen them and embraced them from afar, and having confessed that they were strangers and pilgrims on the earth.`,
+        `By faith, Moses, when he had grown up, refused to be called the son of Pharaoh's daughter, choosing rather to share ill treatment with God's people, than to enjoy the pleasures of sin for a time; accounting the reproach of Christ greater riches than the treasures of Egypt, for he looked to the reward.`,
+        `Jesus said to him, "If you can believe, all things are possible to him who believes." Immediately the father of the child cried out with tears, "I believe. Help my unbelief!"`
+      ]
+    },
+    reflect: `Abraham's faith is aimed at a promise he'd never fully see fulfilled — stars he'd never finish counting. Hebrews calls faith the substance of things only hoped for, not yet seen. And the father in Mark shows the most honest version of it: believing, and still asking for help with the doubt underneath. Faith was never about having zero questions. It's about trusting God with the ones you still have.`
+  },
+  '2026-09-17': {
+    theme: 'Identity in Christ',
+    readingTime: '≈ 8 min read',
+    ot: {
+      ref: 'PSALM 139:1–6, 13–18; ISAIAH 43:1, 4',
+      paragraphs: [
+        `Yahweh, you have searched me, and you know me. You know my sitting down and my rising up. You perceive my thoughts from afar. You search out my path and my lying down, and are acquainted with all my ways. For there is not a word on my tongue, but, behold, Yahweh, you know it altogether.`,
+        `You hem me in behind and before. You laid your hand on me. This knowledge is beyond me. It's lofty. I can't attain it.`,
+        `For you formed my inmost being. You knit me together in my mother's womb. I will give thanks to you, for I am fearfully and wonderfully made. Your works are wonderful. My soul knows that very well. My frame wasn't hidden from you, when I was made in secret. In your book they were all written, the days that were ordained for me, when as yet there were none of them.`,
+        `How precious to me are your thoughts, God! How vast is their sum! "But now Yahweh who created you, Jacob, and he who formed you, Israel, says: 'Don't be afraid, for I have redeemed you. I have called you by your name. You are mine. Since you have been precious and honored in my sight, I have loved you.'"`
+      ]
+    },
+    nt: {
+      ref: 'EPHESIANS 1:3–8; 2:8–10; 1 PETER 2:9',
+      paragraphs: [
+        `Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ; even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love; having predestined us for adoption as children through Jesus Christ to himself, according to the good pleasure of his desire.`,
+        `To the praise of the glory of his grace, by which he freely gave us favor in the Beloved, in whom we have our redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace.`,
+        `For by grace you have been saved through faith, and that not of yourselves; it is the gift of God, not of works, that no one would boast. For we are his workmanship, created in Christ Jesus for good works, which God prepared before that we would walk in them.`,
+        `But you are a chosen race, a royal priesthood, a holy nation, a people for God's own possession, that you may proclaim the excellencies of him who called you out of darkness into his marvelous light.`
+      ]
+    },
+    reflect: `Psalm 139 describes being known before you could do anything to earn it — searched, formed, named. Ephesians says the same thing about being chosen in Christ. Identity, in scripture, isn't built up from achievements. It's something you're given first, and then live out of, rather than something you have to go prove.`
+  },
+  '2026-09-18': {
+    theme: 'Rest',
+    readingTime: '≈ 8 min read',
+    ot: {
+      ref: 'GENESIS 2:1–3; EXODUS 20:8–11; PSALM 23',
+      paragraphs: [
+        `The heavens, the earth, and all their vast array were finished. On the seventh day God finished his work which he had made, and he rested on the seventh day from all his work which he had made. God blessed the seventh day, and made it holy, because he rested in it from all his work.`,
+        `"Remember the Sabbath day, to keep it holy. You shall labor six days, and do all your work, but the seventh day is a Sabbath to Yahweh your God. In it you shall not do any work. For in six days Yahweh made heaven and earth, the sea, and all that is in them, and rested the seventh day; therefore Yahweh blessed the Sabbath day, and made it holy."`,
+        `Yahweh is my shepherd. I shall lack nothing. He makes me lie down in green pastures. He leads me beside still waters. He restores my soul. He guides me in the paths of righteousness for his name's sake.`,
+        `Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me. Surely goodness and loving kindness shall follow me all the days of my life, and I will dwell in Yahweh's house forever.`
+      ]
+    },
+    nt: {
+      ref: 'MATTHEW 11:28–30; HEBREWS 4:1, 3, 9–11',
+      paragraphs: [
+        `"Come to me, all you who labor and are heavily burdened, and I will give you rest. Take my yoke upon you, and learn from me, for I am gentle and humble in heart, and you will find rest for your souls. For my yoke is easy, and my burden is light."`,
+        `Let us fear therefore, lest perhaps, a promise being left of entering into his rest, anyone of you should seem to have come short of it. For we who have believed do enter into that rest.`,
+        `There remains therefore a Sabbath rest for the people of God. For he who has entered into his rest has himself also rested from his works, as God did from his. Let us therefore give diligence to enter into that rest.`
+      ]
+    },
+    reflect: `God rests on the seventh day not because he's tired, but to build rest into the rhythm of creation itself. Jesus offers something similar in a different register — rest not from stopping work exactly, but from carrying it as if you had to hold it alone. Rest isn't a reward for finishing. It's a rhythm God built in from the beginning.`
+  },
+  '2026-09-19': {
+    theme: 'Generosity',
+    readingTime: '≈ 9 min read',
+    ot: {
+      ref: 'DEUTERONOMY 15:7–11; ISAIAH 58:6–11',
+      paragraphs: [
+        `If there is a poor man with you, one of your brothers, within any of your gates in your land which Yahweh your God gives you, you shall not harden your heart, nor shut your hand from your poor brother; but you shall surely open your hand to him, and shall surely lend him sufficient for his need.`,
+        `You shall surely give him, and your heart shall not be grieved when you give to him, because for this thing Yahweh your God will bless you in all your work. For the poor will never cease out of the land. Therefore I command you to surely open your hand to your brother, to your needy, and to your poor, in your land.`,
+        `"Isn't this the fast that I have chosen: to release the bonds of wickedness, to undo the straps of the yoke, to let the oppressed go free, and that you break every yoke? Isn't it to distribute your bread to the hungry, and that you bring the poor who are cast out to your house? When you see the naked, that you cover him?"`,
+        `"If you pour out your soul to the hungry, and satisfy the afflicted soul, then your light will rise in darkness, and your obscurity will be as the noonday; and Yahweh will guide you continually, and satisfy your soul in dry places, and make your bones strong. You will be like a watered garden."`
+      ]
+    },
+    nt: {
+      ref: '2 CORINTHIANS 9:6–11; MARK 10:42–45',
+      paragraphs: [
+        `Remember this: he who sows sparingly will also reap sparingly. He who sows bountifully will also reap bountifully. Let each man give according as he has determined in his heart; not grudgingly, or under compulsion; for God loves a cheerful giver.`,
+        `God is able to make all grace abound to you, that you, always having all sufficiency in everything, may abound to every good work. Now may he who supplies seed to the sower and bread for food, supply and multiply your seed for sowing, and increase the fruits of your righteousness, you being enriched in everything to all liberality, which produces through us thanksgiving to God.`,
+        `"You know that they who are recognized as rulers over the nations lord it over them. But it shall not be so among you, but whoever wants to become great among you shall be your servant. Whoever of you wants to become first among you shall be bondservant of all. For the Son of Man also came not to be served, but to serve, and to give his life as a ransom for many."`
+      ]
+    },
+    reflect: `Deuteronomy and Isaiah both push generosity past a feeling into an open hand — actually giving, not just meaning to. Jesus redefines greatness itself as serving rather than being served. Generosity, in scripture, was never about having extra to spare. It's a way of holding what you have loosely enough to give it away.`
+  },
+  '2026-09-20': {
+    theme: 'Repentance',
+    readingTime: '≈ 9 min read',
+    ot: {
+      ref: 'PSALM 51:1–12, 17; JOEL 2:12–13',
+      paragraphs: [
+        `Have mercy on me, God, according to your loving kindness. According to the multitude of your tender mercies, blot out my transgressions. Wash me thoroughly from my iniquity. Cleanse me from my sin. For I know my transgressions. My sin is constantly before me.`,
+        `Behold, you desire truth in the inward parts. You teach me wisdom in the inmost place. Purify me with hyssop, and I will be clean. Wash me, and I will be whiter than snow. Let me hear joy and gladness, that the bones which you have broken may rejoice.`,
+        `Create in me a clean heart, God. Renew a right spirit within me. Don't throw me from your presence, and don't take your Holy Spirit from me. Restore to me the joy of your salvation. Uphold me with a willing spirit. The sacrifices of God are a broken spirit. A broken and contrite heart, God, you will not despise.`,
+        `"'Yet even now,' says Yahweh, 'turn to me with all your heart, and with fasting, and with weeping, and with mourning. Rend your heart, and not your garments, and turn to Yahweh your God, for he is gracious and merciful, slow to anger, and abundant in loving kindness.'"`
+      ]
+    },
+    nt: {
+      ref: 'LUKE 15:11–24; 1 JOHN 1:9',
+      paragraphs: [
+        `Jesus said, "A certain man had two sons. The younger of them said to his father, 'Father, give me my share of your property.' He divided his livelihood between them. Not many days after, the younger son gathered all of this together and traveled into a far country. There he wasted his property with riotous living."`,
+        `"When he had spent all of it, there arose a severe famine in that country, and he began to be in need. He went and joined himself to one of the citizens of that country, and he sent him into his fields to feed pigs. He wanted to fill his belly with the husks that the pigs ate, but no one gave him any."`,
+        `"But when he came to himself he said, 'How many hired servants of my father's have bread enough to spare, and I'm dying with hunger! I will get up and go to my father, and will tell him, "Father, I have sinned against heaven, and in your sight. I am no longer worthy to be called your son."'"`,
+        `"He arose, and came to his father. But while he was still far off, his father saw him, and was moved with compassion, and ran, and fell on his neck, and kissed him. The father said to his servants, 'Bring out the best robe, and put it on him. Bring the fattened calf, kill it, and let us eat, and celebrate; for this, my son, was dead, and is alive again. He was lost, and is found.' They began to celebrate."`,
+        `If we confess our sins, he is faithful and righteous to forgive us the sins, and to cleanse us from all unrighteousness.`
+      ]
+    },
+    reflect: `David's prayer in Psalm 51 doesn't try to explain away what he'd done — it just asks to be made clean. The father in Luke 15 doesn't wait for a polished apology; he's already running while his son is still far off. Repentance, in scripture, isn't about grovelling long enough to earn your way back. It's turning around, and finding God already closer than expected.`
+  },
+  '2026-09-21': {
+    theme: 'Praise',
+    readingTime: '≈ 8 min read',
+    ot: {
+      ref: 'PSALM 150; PSALM 96:1–6',
+      paragraphs: [
+        `Praise Yah! Praise God in his sanctuary! Praise him in his heavens for his acts of power! Praise him for his acts of power! Praise him according to his excellent greatness!`,
+        `Praise him with the sounding of the trumpet! Praise him with harp and lyre! Praise him with tambourine and dancing! Praise him with stringed instruments and flute! Praise him with loud cymbals! Praise him with resounding cymbals! Let everything that has breath praise Yah! Praise Yah!`,
+        `Sing to Yahweh a new song! Sing to Yahweh, all the earth! Sing to Yahweh! Bless his name! Proclaim his salvation from day to day! Declare his glory among the nations, his marvelous works among all the peoples!`,
+        `For all the gods of the peoples are idols, but Yahweh made the heavens. Honor and majesty are before him. Strength and beauty are in his sanctuary. For great is Yahweh, and greatly to be praised!`
+      ]
+    },
+    nt: {
+      ref: 'EPHESIANS 5:19–20; HEBREWS 13:15; REVELATION 5:11–13',
+      paragraphs: [
+        `Speaking to one another in psalms, hymns, and spiritual songs; singing, and making melody in your heart to the Lord; giving thanks always concerning all things in the name of our Lord Jesus Christ, to God, even the Father. Through him, let us offer up a sacrifice of praise to God continually, the fruit of lips which proclaim allegiance to his name.`,
+        `I saw, and I heard something like a voice of many angels around the throne, the living creatures, and the elders; and the number of them was ten thousands of ten thousands, and thousands of thousands; saying with a loud voice, "Worthy is the Lamb who has been killed to receive the power, wealth, wisdom, strength, honor, glory, and blessing!"`,
+        `I heard every created thing which is in heaven, on the earth, under the earth, on the sea, and everything in them, saying, "To him who sits on the throne, and to the Lamb be the blessing, the honor, the glory, and the dominion, forever and ever! Amen!"`
+      ]
+    },
+    reflect: `Psalm 150 doesn't give a reason for praise — it just piles up instruments and voices until everything that breathes is praising. Revelation ends the whole story the same way, all creation joining one unbroken song. Praise, in scripture, isn't a response reserved for when life is going well. It's the native language of everything that's alive.`
+  }
+};
+
 /* ---------- persistence ---------- */
 const STORAGE_KEY = 'everyDayApp_v1';
 
@@ -725,11 +961,23 @@ const today = easternCalendarDate(new Date());
 const todayISO = toISODate(today);
 
 /* ---------- pick today's reading ---------- */
+/* ---------- pick today's reading: scheduled date takes priority, otherwise rotate ---------- */
 const readingIndex = ((daysSinceEpoch(today) % READINGS.length) + READINGS.length) % READINGS.length;
-const reading = READINGS[readingIndex];
+const reading = SCHEDULE[todayISO] || READINGS[readingIndex];
+
+// Reading time is computed from the actual text rather than hand-typed,
+// so it can never drift out of sync with content again. 110 words/minute
+// reflects a slow, reflective devotional pace rather than skimming speed.
+const WORDS_PER_MINUTE = 110;
+function estimateReadingMinutes(r){
+  const wordCount = (r.ot.paragraphs.join(' ') + ' ' + r.nt.paragraphs.join(' '))
+    .split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(wordCount / WORDS_PER_MINUTE));
+}
 
 function renderReading(){
-  document.getElementById('reading-time-pill').textContent = reading.readingTime;
+  const minutes = estimateReadingMinutes(reading);
+  document.getElementById('reading-time-pill').textContent = `≈ ${minutes} min read`;
   document.getElementById('ot-text').innerHTML = reading.ot.paragraphs.map(p => `<p class="verse-text">${p}</p>`).join('');
   document.getElementById('ot-ref').textContent = reading.ot.ref;
   document.getElementById('nt-text').innerHTML = reading.nt.paragraphs.map(p => `<p class="verse-text">${p}</p>`).join('');
