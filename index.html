@@ -366,6 +366,27 @@ body{
 }
 
 /* ---------- tab bar ---------- */
+/* ---------- scroll progress track ---------- */
+.scroll-track{
+  position:absolute;
+  right:6px;
+  top: calc(56px + env(safe-area-inset-top, 0px));
+  bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+  width:3px;
+  border-radius:3px;
+  background:var(--paper-dim);
+  overflow:hidden;
+  z-index:5;
+  pointer-events:none;
+}
+.scroll-fill{
+  width:100%;
+  height:0%;
+  border-radius:3px;
+  background:linear-gradient(180deg, var(--night), var(--dawn));
+  transition:height .08s linear;
+}
+
 .tabbar{
   flex-shrink:0;
   display:flex;
@@ -465,6 +486,10 @@ body{
         <div class="bar-track"><div class="bar-fill nt" id="nt-bar" style="width:0%"></div></div>
       </div>
     </div>
+  </div>
+
+  <div class="scroll-track" id="scroll-track">
+    <div class="scroll-fill" id="scroll-fill"></div>
   </div>
 
   <div class="tabbar">
@@ -1288,11 +1313,30 @@ function renderGreeting(){
   document.getElementById('date-line').textContent = dateFmt.format(now);
 }
 
+/* ---------- scroll progress track ---------- */
+// Shows how far through today's reading the person has scrolled, on the
+// right edge of the screen. Only meaningful on the Today screen, which is
+// the one long enough to scroll — hidden elsewhere.
+function updateScrollProgress(){
+  const el = document.getElementById('screen-today');
+  const max = el.scrollHeight - el.clientHeight;
+  const pct = max > 0 ? Math.min(100, (el.scrollTop / max) * 100) : 0;
+  document.getElementById('scroll-fill').style.height = pct + '%';
+}
+document.getElementById('screen-today').addEventListener('scroll', updateScrollProgress);
+
 function showScreen(id, btn){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
+  const track = document.getElementById('scroll-track');
+  if(id === 'screen-today'){
+    track.style.display = 'block';
+    updateScrollProgress();
+  }else{
+    track.style.display = 'none';
+  }
   if(id === 'screen-progress'){
     renderWeekRow();
     renderProgressBars();
@@ -1303,6 +1347,7 @@ function showScreen(id, btn){
 renderGreeting();
 renderReading();
 renderStatus();
+updateScrollProgress();
 </script>
 
 </body>
